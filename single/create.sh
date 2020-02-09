@@ -26,6 +26,8 @@ mkdir -p ${INSTANCE}
 cd ${INSTANCE}
 chown -hR ${USER} .
 
+cp ../template/gitignore/.gitignore .
+
 cp ../template/uninstall.sh .
 echo "docker network rm ${INSTANCE}_external_network ${INSTANCE}_internal_network" >> ./uninstall.sh
 bash ${DIR}/create-mstdn.sh
