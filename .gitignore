@@ -1,3 +1,4 @@
 /live
 /template/.env.development
-*/.gitignore
+/account-*.md
+/*-nginx.conf

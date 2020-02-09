@@ -1,8 +1,0 @@
-/postgres
-/public
-/redis
-/.env*
-/accounts-*.md
-/docker-compose.yml
-/nginx.conf
-/uninstall.sh

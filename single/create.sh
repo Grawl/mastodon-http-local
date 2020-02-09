@@ -9,7 +9,7 @@ export USER_NAME=developer
 export USER_EMAIL=developer@example.com
 export PRIVATE_DOMAIN_OR_IP=
 
-export INSTANCE=mastodon-http-local-32
+export INSTANCE=mastodon-development
 export NGINX_IP=172.32.0.10
 export MSTDN_SUBNET=172.32.0.0/24
 export MSTDN_IPV4_WEB=172.32.0.4
@@ -21,20 +21,12 @@ export MSTDN_IPV4_SIDEKIQ=172.32.0.8
 # cent os support, delete hyphens
 export INSTANCE=${INSTANCE//-/}
 
-cd ${DIR}/..
-if [[ -e ${INSTANCE} ]]; then
-  echo "Instance ${INSTANCE} already exists; remove ${INSTANCE}/ folder to re-create it."
-  exit 1
-fi
-mkdir -p ${INSTANCE}
 cd ${INSTANCE}
 chown -hR ${USER} .
 
-cp ../template/gitignore/.gitignore .
-
-cp ../template/uninstall.sh .
-echo "docker network rm ${INSTANCE}_external_network ${INSTANCE}_internal_network" >> ./uninstall.sh
+echo 'create app'
 bash ${DIR}/create-mstdn.sh
+echo 'create nginx'
 bash ${DIR}/create-nginx.sh
 # bash ${DIR}/create-postfix.sh
 
@@ -45,6 +37,6 @@ if [[ -n ${PRIVATE_DOMAIN_OR_IP} ]]; then
 else
   echo "open ${NGINX_IP}:80 with :"
 fi
-cat ./accounts-${USER_NAME}.md
+cat ../account-${INSTANCE}-${USER_NAME}.md
 # chown -hR ${USER} .
 
