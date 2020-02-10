@@ -6,6 +6,8 @@ ARG VCS_REF
 LABEL org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/frost-tb-voo/mastodon-http-local"
 
+COPY mastodondevelopment /opt/mastodon/
+
 RUN sed -i -e "s|force_ssl|# force_ssl|g" /opt/mastodon/app/controllers/application_controller.rb
 
 RUN sed -i -e 's|"https://#{record.domain}"|"http://#{record.domain}"|g' /opt/mastodon/app/helpers/admin/action_logs_helper.rb

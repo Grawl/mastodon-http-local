@@ -34,9 +34,11 @@ services:
 #      - ./elasticsearch:/usr/share/elasticsearch/data
 
   web:
-    # build: .
+    build:
+      context: .
+      dockerfile: ../Dockerfile
     # image: tootsuite/mastodon
-    image: novsyama/mastodon-http-local
+    #image: novsyama/mastodon-http-local
     restart: always
     # env_file: .env.production
     env_file: .env.development
@@ -54,7 +56,77 @@ services:
       - redis
 #      - es
     volumes:
-      - ./public/system:/mastodon/public/system
+      #- ./.circleci:/mastodon/.circleci
+      #- ./.dependabot:/mastodon/.dependabot
+      #- ./.github:/mastodon/.github
+      #- ./.git:/mastodon/.git
+      - ./app:/mastodon/app
+      - ./bin:/mastodon/bin
+      - ./config:/mastodon/config
+      - ./db:/mastodon/db
+      - ./dist:/mastodon/dist
+      - ./lib:/mastodon/lib
+      - ./log:/mastodon/log
+      - ./nanobox:/mastodon/nanobox
+      - ./postgres:/mastodon/postgres
+      - ./public:/mastodon/public
+      - ./spec:/mastodon/spec
+      #- ./streaming:/mastodon/streaming
+      #- ./vendor:/mastodon/vendor
+      - ./.buildpacks:/mastodon/.buildpacks
+      - ./.codeclimate.yml:/mastodon/.codeclimate.yml
+      #- ./.dockerignore:/mastodon/.dockerignore
+      - ./.editorconfig:/mastodon/.editorconfig
+      - ./.env:/mastodon/.env
+      - ./.env.development:/mastodon/.env.development
+      - ./.env.nanobox:/mastodon/.env.nanobox
+      - ./.env.production:/mastodon/.env.production
+      - ./.env.production.sample:/mastodon/.env.production.sample
+      - ./.env.test:/mastodon/.env.test
+      - ./.env.vagrant:/mastodon/.env.vagrant
+      - ./.eslintignore:/mastodon/.eslintignore
+      - ./.eslintrc.js:/mastodon/.eslintrc.js
+      - ./.foreman:/mastodon/.foreman
+      #- ./.gitattributes:/mastodon/.gitattributes
+      - ./.gitignore:/mastodon/.gitignore
+      - ./.haml-lint.yml:/mastodon/.haml-lint.yml
+      - ./.nanoignore:/mastodon/.nanoignore
+      - ./.nvmrc:/mastodon/.nvmrc
+      - ./.profile:/mastodon/.profile
+      - ./.rspec:/mastodon/.rspec
+      - ./.rubocop.yml:/mastodon/.rubocop.yml
+      - ./.ruby-version:/mastodon/.ruby-version
+      - ./.sass-lint.yml:/mastodon/.sass-lint.yml
+      - ./.slugignore:/mastodon/.slugignore
+      - ./.yarnclean:/mastodon/.yarnclean
+      - ./app.json:/mastodon/app.json
+      - ./Aptfile:/mastodon/Aptfile
+      - ./AUTHORS.md:/mastodon/AUTHORS.md
+      - ./babel.config.js:/mastodon/babel.config.js
+      - ./boxfile.yml:/mastodon/boxfile.yml
+      - ./Capfile:/mastodon/Capfile
+      - ./CHANGELOG.md:/mastodon/CHANGELOG.md
+      - ./CODE_OF_CONDUCT.md:/mastodon/CODE_OF_CONDUCT.md
+      - ./config.ru:/mastodon/config.ru
+      - ./CONTRIBUTING.md:/mastodon/CONTRIBUTING.md
+      - ./crowdin.yml:/mastodon/crowdin.yml
+      #- ./docker-compose.override.yml:/mastodon/docker-compose.override.yml
+      #- ./docker-compose.yml:/mastodon/docker-compose.yml
+      #- ./Dockerfile:/mastodon/Dockerfile
+      - ./Gemfile:/mastodon/Gemfile
+      - ./Gemfile.lock:/mastodon/Gemfile.lock
+      - ./ide-helper.js:/mastodon/ide-helper.js
+      - ./LICENSE:/mastodon/LICENSE
+      - ./package.json:/mastodon/package.json
+      - ./postcss.config.js:/mastodon/postcss.config.js
+      - ./priv-config:/mastodon/priv-config
+      - ./Procfile:/mastodon/Procfile
+      - ./Procfile.dev:/mastodon/Procfile.dev
+      - ./Rakefile:/mastodon/Rakefile
+      - ./README.md:/mastodon/README.md
+      - ./scalingo.json:/mastodon/scalingo.json
+      - ./Vagrantfile:/mastodon/Vagrantfile
+      - ./yarn.lock:/mastodon/yarn.lock
 
   streaming:
     # build: .

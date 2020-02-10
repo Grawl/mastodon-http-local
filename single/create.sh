@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 DIR=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 
@@ -21,8 +22,8 @@ export MSTDN_IPV4_SIDEKIQ=172.32.0.8
 # cent os support, delete hyphens
 export INSTANCE=${INSTANCE//-/}
 
-cd ${INSTANCE}
-chown -hR ${USER} .
+cd $(dirname ${BASH_SOURCE})/../${INSTANCE}
+#chown -hR ${USER} .
 
 echo 'create app'
 bash ${DIR}/create-mstdn.sh
